@@ -22,8 +22,9 @@ public class EmployeePayrollController {
     @PostMapping("/addEmployee")
     public ResponseEntity<ResponseDTO> createEmployee( @Valid @RequestBody EmployeeDTO employeeDTO ){
         ResponseDTO responseDTO = new ResponseDTO("Added Successfully", iEmployeePayrollService.addEmployee ( employeeDTO ));
-        return new ResponseEntity<>( responseDTO, HttpStatus.CREATED );
+        return new ResponseEntity<>( responseDTO, HttpStatus.ACCEPTED );
     }
+
     @GetMapping("/findEmployee/{id}")
     public ResponseEntity<ResponseDTO> findEmployee( @PathVariable int id ){
         ResponseDTO responseDTO = new ResponseDTO("ID found", iEmployeePayrollService.findEmployeeID( id ));
