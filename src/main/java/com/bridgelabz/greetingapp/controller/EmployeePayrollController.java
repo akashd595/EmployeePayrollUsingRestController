@@ -30,6 +30,9 @@ public class EmployeePayrollController {
         return new ResponseEntity<>( responseDTO, HttpStatus.CREATED );
     }
 
+    /**
+     * Finding employee using its ID
+     */
     @GetMapping("/findEmployee/{id}")
     public ResponseEntity<ResponseDTO> findEmployee( @PathVariable int id ){
         ResponseDTO responseDTO = new ResponseDTO("ID found", iEmployeePayrollService.findEmployeeID( id ));
@@ -42,6 +45,9 @@ public class EmployeePayrollController {
         return new ResponseEntity<>(responseDTO, HttpStatus.ACCEPTED);
     }
 
+    /**
+     * Updating Employee Using its ID
+     * */
     @PutMapping("update/{id}")
     public ResponseEntity<ResponseDTO> UpdateEmployee( @Valid @RequestBody EmployeeDTO employeeDTO, @PathVariable int id ){
         ResponseDTO responseDTO = new ResponseDTO("Updated", iEmployeePayrollService.updateEmployeeID( employeeDTO, id ));
