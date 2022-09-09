@@ -15,6 +15,7 @@ public class EmployeeData {
     private int salary;
     private String note;
 
+    private String email;
     @ElementCollection
     @CollectionTable(name = "dept_list", joinColumns = @JoinColumn(name = "employee_id"))
     public List<String> department;
@@ -26,15 +27,17 @@ public class EmployeeData {
         this.firstName = employeeDTO.getFirstName();
         this.salary = employeeDTO.getSalary();
         this.department = employeeDTO.getDepartment();
+        this.email = employeeDTO.getEmail();
     }
 
-    public EmployeeData(int employeeId, String firstName, String lastName, int salary, List<String> department, String note) {
+    public EmployeeData(int employeeId, String firstName, String lastName, int salary, String note, String email, List<String> department) {
         this.employeeId = employeeId;
-        this.department = department;
         this.firstName = firstName;
         this.lastName = lastName;
         this.salary = salary;
         this.note = note;
+        this.email = email;
+        this.department = department;
     }
 
     public int getEmployeeId() {
@@ -48,6 +51,7 @@ public class EmployeeData {
     public String getFirstName() {
         return firstName;
     }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -74,6 +78,14 @@ public class EmployeeData {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public List<String> getDepartment() {

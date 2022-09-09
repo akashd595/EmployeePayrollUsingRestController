@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
 import java.util.List;
 
@@ -17,5 +18,5 @@ public class EmployeeDTO {
     public String firstName;
     public int salary;
     public List<String> department;
-
+    public String email;
 }
