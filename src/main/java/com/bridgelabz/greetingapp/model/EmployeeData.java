@@ -9,43 +9,45 @@ public class EmployeeData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID", nullable = false)
-    private int id;
+    private int employeeId;
     private String firstName;
     private String lastName;
-    private int salary ;
+    private int salary;
     private String note;
+
+    @ElementCollection
+    @CollectionTable(name = "dept_list", joinColumns = @JoinColumn(name = "employee_id"))
+    public List<String> department;
 
     public EmployeeData() {
     }
 
-    public EmployeeData(EmployeeDTO employeeDTO){
-        this.id = id;
+    public EmployeeData(EmployeeDTO employeeDTO) {
         this.firstName = employeeDTO.getFirstName();
         this.salary = employeeDTO.getSalary();
-
+        this.department = employeeDTO.getDepartment();
     }
 
-    public EmployeeData(int id, String firstName, String lastName, int salary, String note) {
-        this.id = id;
+    public EmployeeData(int employeeId, String firstName, String lastName, int salary, List<String> department, String note) {
+        this.employeeId = employeeId;
+        this.department = department;
         this.firstName = firstName;
         this.lastName = lastName;
         this.salary = salary;
         this.note = note;
     }
 
-    public int getId() {
-        return id;
+    public int getEmployeeId() {
+        return employeeId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
 
     public String getFirstName() {
         return firstName;
     }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -72,5 +74,13 @@ public class EmployeeData {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public List<String> getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(List<String> department) {
+        this.department = department;
     }
 }
