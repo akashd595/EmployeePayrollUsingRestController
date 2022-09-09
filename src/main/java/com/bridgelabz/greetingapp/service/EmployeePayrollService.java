@@ -1,6 +1,7 @@
 package com.bridgelabz.greetingapp.service;
 
 import com.bridgelabz.greetingapp.DTO.EmployeeDTO;
+import com.bridgelabz.greetingapp.email.EmailService;
 import com.bridgelabz.greetingapp.exception.CustomException;
 import com.bridgelabz.greetingapp.model.EmployeeData;
 import com.bridgelabz.greetingapp.repository.EmployeeRepository;
@@ -14,8 +15,16 @@ public class EmployeePayrollService implements IEmployeePayrollService {
     @Autowired
     EmployeeRepository employeeRepository;
 
+    @Autowired
+    EmailService emailService;
+
+//    public EmployeeData addEmployee(EmployeeDTO employeeDTO){
+//        EmployeeData employeeData = new EmployeeData(employeeDTO);    //employeeData is entity
+//        return employeeRepository.save(employeeData);
+//    }
     public EmployeeData addEmployee(EmployeeDTO employeeDTO){
         EmployeeData employeeData = new EmployeeData(employeeDTO);    //employeeData is entity
+        emailService.sendEmail(employeeDTO.getEmail(), "Account Sign-up Successfully", "Hello "+employeeDTO.getFirstName()+" Your name added successfully");
         return employeeRepository.save(employeeData);
     }
     public Optional<EmployeeData> findEmployeeID(int id){
